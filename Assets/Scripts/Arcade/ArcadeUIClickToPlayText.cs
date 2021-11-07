@@ -16,6 +16,6 @@ public class ArcadeUIClickToPlayText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        graphic.enabled = ArcadePlayer.Instance.selectedBorne != null;
+        graphic.enabled = (ArcadePlayer.Instance.selectedBorne != null && !ArcadePlayer.Instance.isFocused);
     }
 }

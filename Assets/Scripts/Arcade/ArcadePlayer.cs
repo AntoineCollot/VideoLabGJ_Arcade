@@ -12,6 +12,7 @@ public class ArcadePlayer : MonoBehaviour
     MouseLook mouseLook;
     Transform camT;
     Vector3 originalCameraLocalPosition;
+    public bool isFocused { get; private set; }
 
     public static ArcadePlayer Instance;
 
@@ -28,14 +29,14 @@ public class ArcadePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Action") && selectedBorne!=null)
+        if(Input.GetButtonDown("Action") && selectedBorne!=null && !isFocused)
         {
             StartCoroutine(FocusOnBorne(selectedBorne));
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && isFocused)
         {
-            StartCoroutine(LeaveBorneFocus());
+            LeaveFocus(selectedBorne);
         }
     }
 
@@ -64,6 +65,9 @@ public class ArcadePlayer : MonoBehaviour
 
         mouseLook.enabled = false;
         keyboardControls.enabled = false;
+        isFocused = true;
+
+        borne.PlayArcadeGame();
 
         float t = 0;
         while(t<1)
@@ -77,12 +81,19 @@ public class ArcadePlayer : MonoBehaviour
         }
     }
 
+    public void LeaveFocus(ArcadeBorne borne)
+    {
+        if (borne != selectedBorne)
+            return;
+        StartCoroutine(LeaveBorneFocus());
+    }
+
     IEnumerator LeaveBorneFocus()
     {
         Vector3 camPos = camT.localPosition;
+        isFocused = false;
 
-        mouseLook.enabled = true;
-        keyboardControls.enabled = true;
+        selectedBorne.LeaveArcadeGame();
 
         float t = 0;
         while (t < 1)
@@ -93,5 +104,8 @@ public class ArcadePlayer : MonoBehaviour
 
             yield return null;
         }
+
+        mouseLook.enabled = true;
+        keyboardControls.enabled = true;
     }
 }

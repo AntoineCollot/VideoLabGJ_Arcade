@@ -159,4 +159,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f5fd920d190c549943a0ea43fcecbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tag: ShooterCamera
   freeY: 0

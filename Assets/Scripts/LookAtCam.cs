@@ -5,14 +5,16 @@ using UnityEngine;
 public class LookAtCam : MonoBehaviour {
 
     Transform camT;
+    public string tag;
 
     public bool freeY;
 
-	// Use this for initialization
-	void Awake () {
-        camT = Camera.main.transform;
-	}
-	
+    // Use this for initialization
+    void Awake()
+    {
+        camT = GameObject.FindGameObjectWithTag(tag).transform;
+    }
+
 	// Update is called once per frame
 	void LateUpdate () {
         Vector3 target = camT.position;

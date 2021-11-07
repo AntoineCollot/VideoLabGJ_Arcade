@@ -22,6 +22,7 @@ public class MiniGameManager : MonoBehaviour
         UpdateObjectsActivation();
     }
 
+    [ContextMenu("StartMiniGame")]
     public virtual void StartMiniGame()
     {
         gameIsPlaying = true;

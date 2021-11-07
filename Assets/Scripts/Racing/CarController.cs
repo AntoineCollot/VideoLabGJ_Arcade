@@ -90,5 +90,9 @@ public class CarController : MonoBehaviour
     {
         transform.position = originalPosition;
         transform.rotation = originalRotation;
+
+        carRigidbody.transform.position = originalPosition;
+        carRigidbody.transform.rotation = originalRotation;
+        carRigidbody.velocity = Vector3.zero;
     }
 }

@@ -7,7 +7,7 @@ public class RacingManager : MiniGameManager
     public static RacingManager Instance;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Instance = this;
     }

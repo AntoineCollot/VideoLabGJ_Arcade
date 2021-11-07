@@ -5,7 +5,7 @@ using UnityEngine;
 public class LookAtCam : MonoBehaviour {
 
     Transform camT;
-    public string tag;
+    new public string tag;
 
     public bool freeY;
 

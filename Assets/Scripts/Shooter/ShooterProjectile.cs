@@ -17,7 +17,7 @@ public class ShooterProjectile : MonoBehaviour
             return;
 
         //Ignore collision with the sender's layer
-        if (other.gameObject.layer == sender.layer)
+        if (sender!=null && other.gameObject.layer == sender.layer)
             return;
 
         if(other.CompareTag("ShooterPlayer"))

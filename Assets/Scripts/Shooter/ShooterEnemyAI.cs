@@ -12,7 +12,6 @@ public class ShooterEnemyAI : MonoBehaviour
     public float sightAngle = 40;
     public LayerMask obstacleLayers = int.MaxValue;
     bool seePlayer = false;
-    bool sawPlayerOnce = false;
 
     [Header("Navigation")]
     NavMeshAgent agent;
@@ -55,7 +54,6 @@ public class ShooterEnemyAI : MonoBehaviour
     void OnMiniGameStart()
     {
         seePlayer = false;
-        sawPlayerOnce = false;
         StartCoroutine(RaycastPlayerLoop());
         StartCoroutine(FireLoop());
     }
@@ -80,7 +78,6 @@ public class ShooterEnemyAI : MonoBehaviour
                 if (!Physics.Raycast(ray, toPlayer.magnitude-0.25f, obstacleLayers))
                 {
                     seePlayer = true;
-                    sawPlayerOnce = true;
 
                     agent.isStopped = false;
                     agent.SetDestination(player.position);

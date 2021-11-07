@@ -7,7 +7,6 @@ public class PlatformerTNT : MonoBehaviour
     public GameObject tnt;
     public ParticleSystem tntSFX;
     public Sprite tntTriggerOnSprite;
-    bool hasTrigger = false;
 
     private void Start()
     {
@@ -23,7 +22,6 @@ public class PlatformerTNT : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlatformerCharacterController charController = collision.gameObject.GetComponent<PlatformerCharacterController>();
-        print("Velocity " + charController.GetComponent<Rigidbody2D>().velocity.y);
         if (charController!=null && charController.GetComponent<Rigidbody2D>().velocity.y<0.2f)
         {
             Trigger();

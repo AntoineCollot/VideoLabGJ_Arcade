@@ -75,7 +75,7 @@ public class ShooterPlayerFire : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(hitPoint, explosionRadius, targetLayers);
         foreach (Collider col in colliders)
         {
-            col.SendMessage("GunDamage", SendMessageOptions.DontRequireReceiver);
+            col.attachedRigidbody?.SendMessage("GunDamage", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

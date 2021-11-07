@@ -40,7 +40,7 @@ public class MouseLook : MonoBehaviour
         xTarget.localRotation = originalRotationX * xQuaternion;
         yTarget.localRotation = originalRotationY * yQuaternion;
     }
-    void OnEnable()
+    void Awake()
     {
         if (xTarget == null)
             xTarget = transform;

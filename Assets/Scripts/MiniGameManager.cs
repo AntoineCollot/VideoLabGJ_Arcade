@@ -13,6 +13,10 @@ public class MiniGameManager : MonoBehaviour
     public GameObject[] bootObjects;
     public GameObject[] inGameObjects;
 
+    [Header("Debug")]
+    public bool godMode = false;
+
+
     private void Start()
     {
         UpdateObjectsActivation();
@@ -30,6 +34,11 @@ public class MiniGameManager : MonoBehaviour
     {
         if (!gameIsPlaying)
             return;
+
+#if UNITY_EDITOR
+        if (godMode)
+            return;
+#endif
 
         Debug.Log("Mini Game Over");
         gameIsPlaying = false;

@@ -6,11 +6,12 @@ public class CarController : MonoBehaviour
 {
     public Rigidbody carRigidbody;
 
-    public Vector2 inputs { get; private set; }
+    [HideInInspector] public Vector2 inputs;
     bool isGrounded;
     public Transform groundRaycastOrigin;
     public float groundRayLength;
     public LayerMask groundLayers;
+    bool isBreaking = false;
 
     [Header("Car Settings")]
     public float acceleration=8;
@@ -38,9 +39,13 @@ public class CarController : MonoBehaviour
             return;
 
         inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        isBreaking = Input.GetButton("Action");
 
         if(isGrounded)
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, inputs.x * turnStrength * Time.deltaTime * inputs.y, 0));
+        {
+            float movementSign = Mathf.Sign(Vector3.Dot(carRigidbody.velocity, transform.forward));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, inputs.x * turnStrength * Time.deltaTime * Mathf.Abs(inputs.y)* movementSign, 0));
+        }
 
         transform.position = carRigidbody.position;
     }
@@ -62,7 +67,7 @@ public class CarController : MonoBehaviour
 
         if (isGrounded)
         {
-            if (inputs.y >= 0)
+            if (inputs.y >= 0 && !isBreaking)
                 carRigidbody.AddForce(transform.forward * acceleration * 1000f * inputs.y, ForceMode.Force);
             else
                 carRigidbody.AddForce(transform.forward * backwardAcceleration * 1000f * inputs.y, ForceMode.Force);
@@ -73,10 +78,12 @@ public class CarController : MonoBehaviour
 
         carRigidbody.AddForce(Vector3.up * gravity, ForceMode.Force);
 
-        if (isGrounded)
-            carRigidbody.drag = dragOnGround;
-        else
+        if (!isGrounded)
             carRigidbody.drag = 0.5f;
+        else if(isBreaking)
+            carRigidbody.drag = dragOnGround*0.5f;
+        else
+            carRigidbody.drag = dragOnGround;
     }
 
     void OnMiniGameOver()

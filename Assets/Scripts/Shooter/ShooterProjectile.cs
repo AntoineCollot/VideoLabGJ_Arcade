@@ -13,6 +13,9 @@ public class ShooterProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject == null)
+            return;
+
         //Ignore collision with the sender's layer
         if (other.gameObject.layer == sender.layer)
             return;

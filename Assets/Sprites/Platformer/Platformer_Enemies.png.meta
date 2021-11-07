@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: 2188099259534512084
     second: Platformer_Enemies_8
+  - first:
+      213: 3784391464741999775
+    second: Platformer_Enemies_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -314,6 +317,27 @@ TextureImporter:
       bones: []
       spriteID: 4df89d9fea0bd5e10800000000000000
       internalID: 2188099259534512084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer_Enemies_9
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9497f29cfbd48430800000000000000
+      internalID: 3784391464741999775
       vertices: []
       indices: 
       edges: []

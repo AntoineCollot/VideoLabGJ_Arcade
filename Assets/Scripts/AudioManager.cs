@@ -14,6 +14,14 @@ public enum SFX
     ShooterFire,
     ShooterEnemyHurt,
     ShooterWalkStep,
+    TypeWritingEffect,
+    ArcadePlayerDeath,
+    CountDownFight,
+    CountdownRace,
+    PlatformerJump,
+    PlatformerEnemyKill,
+    TNTExplosion,
+    VSPlayerWin,
 }
 
 public class AudioManager : MonoBehaviour

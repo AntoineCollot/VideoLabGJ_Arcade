@@ -13,6 +13,7 @@ public class ArcadePlayer : MonoBehaviour
     Transform camT;
     Vector3 originalCameraLocalPosition;
     public bool isFocused { get; private set; }
+    public bool isInTransition { get; private set; }
 
     public static ArcadePlayer Instance;
 
@@ -29,6 +30,9 @@ public class ArcadePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isInTransition || ArcadeManager.Instance.gameEnded)
+            return;
+
         if(Input.GetButtonDown("Action") && selectedBorne!=null && !isFocused)
         {
             StartCoroutine(FocusOnBorne(selectedBorne));
@@ -68,7 +72,7 @@ public class ArcadePlayer : MonoBehaviour
         isFocused = true;
 
         borne.PlayArcadeGame();
-
+        isInTransition = true;
         float t = 0;
         while(t<1)
         {
@@ -79,6 +83,9 @@ public class ArcadePlayer : MonoBehaviour
             
             yield return null;
         }
+
+        yield return new WaitForSeconds(0.5f);
+        isInTransition = false;
     }
 
     public void LeaveFocus(ArcadeBorne borne)
@@ -94,6 +101,7 @@ public class ArcadePlayer : MonoBehaviour
         isFocused = false;
 
         selectedBorne.LeaveArcadeGame();
+        isInTransition = true;
 
         float t = 0;
         while (t < 1)
@@ -107,5 +115,8 @@ public class ArcadePlayer : MonoBehaviour
 
         mouseLook.enabled = true;
         keyboardControls.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+
+        isInTransition = false;
     }
 }

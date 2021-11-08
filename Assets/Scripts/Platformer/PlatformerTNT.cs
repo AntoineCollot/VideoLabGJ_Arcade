@@ -33,6 +33,7 @@ public class PlatformerTNT : MonoBehaviour
         if (ArcadeManager.Instance.tntHasExploded)
             return;
 
+        AudioManager.PlaySound(SFX.TNTExplosion);
         ArcadeManager.Instance.tntHasExploded = true;
 
         SetTriggeredState();

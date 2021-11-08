@@ -200,6 +200,8 @@ public class PlatformerCharacterController : MonoBehaviour
         Vector2 velocity = rigidbody.velocity;
         velocity.y = jumpVelocity;
         rigidbody.velocity = velocity;
+
+        AudioManager.PlaySound(SFX.PlatformerJump);
     }
 
     public void JumpAtHeight(float height, bool playAnim)

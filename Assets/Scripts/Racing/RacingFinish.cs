@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyFinish : MonoBehaviour
+public class RacingFinish : MonoBehaviour
 {
     public Transform key;
     public float rotationSpeed = 10;
@@ -16,6 +16,12 @@ public class KeyFinish : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        key.gameObject.SetActive(!ArcadeManager.Instance.keyObtained && RacingManager.Instance.currentRaceTime>0);
         key.Rotate(Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        RacingManager.Instance.MiniGameWin();
     }
 }

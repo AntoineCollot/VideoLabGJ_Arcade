@@ -10,6 +10,7 @@ public class VSPlayerControls : MonoBehaviour
     bool isAttacking = false;
     Direction blockDirection;
 
+    bool startLock;
     public int hp = 3;
 
     Animator anim;
@@ -29,12 +30,14 @@ public class VSPlayerControls : MonoBehaviour
     {
         hp = 3;
         anim.SetBool("HasWon", false);
+        startLock = true;
+        Invoke("ClearStartLock", 3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!VSManager.Instance.gameIsPlaying || isAttacking)
+        if (!VSManager.Instance.gameIsPlaying || isAttacking || startLock)
             return;
 
         if (VSManager.Instance.gameWon)
@@ -99,5 +102,10 @@ public class VSPlayerControls : MonoBehaviour
         yield return new WaitForSeconds(attackTotalTime - attackDelay);
 
         isAttacking = false;
+    }
+
+    void ClearStartLock()
+    {
+        startLock = false;
     }
 }

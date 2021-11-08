@@ -102,10 +102,15 @@ public class PlatformerEnemyAI : MonoBehaviour
         {
             Kill();
             collision.collider.GetComponent<PlatformerCharacterController>()?.ForceJump();
+
+            AudioManager.PlaySound(SFX.PlatformerEnemyKill);
+
         }
         else
         {
             //Gameover
+            AudioManager.PlaySound(SFX.Hurt);
+
             PlatformerManager.Instance.MiniGameOver();
         }
     }

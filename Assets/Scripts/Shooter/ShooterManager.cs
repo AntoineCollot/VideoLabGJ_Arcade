@@ -26,6 +26,8 @@ public class ShooterManager : MiniGameManager
         if (Time.time < lastDamageTime + 1)
             return;
 
+        AudioManager.PlaySound(SFX.Hurt);
+
         lastDamageTime = Time.time;
         Debug.Log("Player Damaged");
         playerHP--;

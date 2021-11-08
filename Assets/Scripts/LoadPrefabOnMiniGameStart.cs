@@ -7,7 +7,7 @@ public class LoadPrefabOnMiniGameStart : MonoBehaviour
     public MiniGameManager miniGameManager;
 
     public GameObject prefab;
-    GameObject instance;
+   [HideInInspector] public GameObject instance;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,6 +25,7 @@ public class LoadPrefabOnMiniGameStart : MonoBehaviour
 
     void OnMiniGameOver()
     {
-        Destroy(instance);
+        if(instance!=null)
+            Destroy(instance);
     }
 }

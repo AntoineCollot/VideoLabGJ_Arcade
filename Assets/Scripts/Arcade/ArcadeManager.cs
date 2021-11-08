@@ -11,6 +11,7 @@ public class ArcadeManager : MonoBehaviour
     public bool wheelObtained = false;
     public bool barrelsExploded = false;
     public bool keyObtained = false;
+    public bool gameEnded = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,6 +23,8 @@ public class ArcadeManager : MonoBehaviour
     wheelObtained = false;
     barrelsExploded = false;
     keyObtained = false;
+        Cursor.visible = false;
 #endif
+
     }
 }

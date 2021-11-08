@@ -21,6 +21,7 @@ public class ShooterPlayerFire : MonoBehaviour
     RectTransform weaponRectT;
     CharacterController controller;
     float weaponWaveTime;
+    float lastCosSign;
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +49,14 @@ public class ShooterPlayerFire : MonoBehaviour
     {
         Vector2 pos = weaponRectT.anchoredPosition;
         weaponWaveTime += frequency * controller.velocity.magnitude;
-        pos.y = Mathf.Cos(weaponWaveTime) * amplitude + amplitude;
+        float cos = Mathf.Cos(weaponWaveTime);
+        if (Mathf.Sign(cos - 0.5f) != lastCosSign)
+        {
+            AudioManager.PlaySound(SFX.ShooterWalkStep);
+        }
+        pos.y = cos * amplitude + amplitude;
         weaponRectT.anchoredPosition = pos;
+        lastCosSign = Mathf.Sign(cos-0.5f);
     }
 
     void Fire()
@@ -59,6 +66,8 @@ public class ShooterPlayerFire : MonoBehaviour
 
         anim.SetTrigger("Fire");
         lastFireTime = Time.time;
+
+        AudioManager.PlaySound(SFX.ShooterFire);
 
         RaycastHit hit;
         if(Physics.Raycast(new Ray(transform.position, transform.forward),out hit, 100,obstacleLayers))

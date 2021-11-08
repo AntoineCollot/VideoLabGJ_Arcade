@@ -127,6 +127,9 @@ public class ShooterEnemyAI : MonoBehaviour
         //If dead, stops
         if (hp <= 0)
             return;
+
+        AudioManager.PlaySound(SFX.ShooterEnemyHurt);
+
         hp--;
         if (hp <= 0)
         {

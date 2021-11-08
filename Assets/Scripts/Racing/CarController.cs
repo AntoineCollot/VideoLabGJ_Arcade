@@ -24,6 +24,9 @@ public class CarController : MonoBehaviour
     Vector3 originalPosition;
     Quaternion originalRotation;
 
+    public GameObject smokeRight;
+    public GameObject smokeLeft;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,8 @@ public class CarController : MonoBehaviour
 
         inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         isBreaking = Input.GetButton("Action");
+        smokeRight.SetActive(isBreaking);
+        smokeLeft.SetActive(isBreaking);
 
         if(isGrounded)
         {
@@ -52,7 +57,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!RacingManager.Instance.gameIsPlaying)
+        if (!RacingManager.Instance.gameIsPlaying || !RacingManager.Instance.RaceIsOn)
             return;
 
         isGrounded = false;

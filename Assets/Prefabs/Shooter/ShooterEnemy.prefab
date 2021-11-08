@@ -210,7 +210,7 @@ MonoBehaviour:
   fireDelay: 0.75
   projectilePrefab: {fileID: 1657131316310979908, guid: be057f33273feb146a75301cbb70a271, type: 3}
   gunOrigin: {fileID: 8092758327674380841}
-  projectileSpeed: 3
+  projectileSpeed: 4.5
 --- !u!54 &1106411412400895326
 Rigidbody:
   m_ObjectHideFlags: 0

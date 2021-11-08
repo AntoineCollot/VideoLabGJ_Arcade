@@ -12,7 +12,8 @@ public class VSEnemyAI : MonoBehaviour
     public float pauseTime = 2;
     bool isAttacking = false;
 
-    public int hp = 10;
+    public int maxHp = 10;
+    public int currentHp = 10;
 
     Animator anim;
 
@@ -33,14 +34,15 @@ public class VSEnemyAI : MonoBehaviour
 
     private void OnMiniGameStart()
     {
-        hp = 10;
+        currentHp = maxHp;
 
         StartCoroutine(AttackLoop());
     }
 
     void OnMiniGameOver()
     {
-        hp = 10;
+        currentHp = maxHp;
+
         StopAllCoroutines();
     }
 
@@ -59,9 +61,9 @@ public class VSEnemyAI : MonoBehaviour
         AudioManager.PlaySound(SFX.VSEnemyHurt);
 
         anim.SetTrigger("Hit");
-        hp--;
+        currentHp--;
 
-        if (hp <= 0)
+        if (currentHp <= 0)
             VSManager.Instance.MiniGameWin();
 
         return true;
@@ -69,6 +71,7 @@ public class VSEnemyAI : MonoBehaviour
 
     IEnumerator Attack(Direction direction)
     {
+
         AudioManager.PlaySound(SFX.VSEnemyAttack);
         isAttacking = true;
 
@@ -92,6 +95,8 @@ public class VSEnemyAI : MonoBehaviour
 
     IEnumerator AttackLoop()
     {
+        yield return new WaitForSeconds(5);
+
         while (VSManager.Instance.gameIsPlaying)
         {
             int attackCount = Random.Range(3, 10);

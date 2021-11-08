@@ -16,10 +16,12 @@ public class MiniGameManager : MonoBehaviour
     [Header("Debug")]
     public bool godMode = false;
 
+    new protected AudioSource audio;
 
     private void Start()
     {
         UpdateObjectsActivation();
+        audio = GetComponent<AudioSource>();
     }
 
     [ContextMenu("StartMiniGame")]
@@ -29,6 +31,9 @@ public class MiniGameManager : MonoBehaviour
         onMiniGameStart.Invoke();
 
         UpdateObjectsActivation();
+
+        if (audio != null)
+            audio.Play();
     }
 
     public virtual void MiniGameOver()
@@ -46,6 +51,9 @@ public class MiniGameManager : MonoBehaviour
         onMiniGameOver.Invoke();
 
         UpdateObjectsActivation();
+
+        if (audio != null)
+            audio.Stop();
     }
 
     void UpdateObjectsActivation()

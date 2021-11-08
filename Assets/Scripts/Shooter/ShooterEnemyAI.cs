@@ -119,7 +119,7 @@ public class ShooterEnemyAI : MonoBehaviour
         else
             anim.SetFloat("MoveSpeed", 1);
 
-        anim.SetFloat("PlayerDirection", Vector3.Dot((player.position - transform.position).normalized, transform.forward));
+        anim.SetFloat("PlayerAngle", Mathf.Abs(Vector3.Angle((player.position - transform.position).normalized, transform.forward)));
     }
 
     public void GunDamage()
@@ -138,5 +138,6 @@ public class ShooterEnemyAI : MonoBehaviour
             agent.isStopped = true;
             Destroy(gameObject, 1);
         }
+        
     }
 }

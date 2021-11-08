@@ -34,6 +34,9 @@ public class PlatformerCharacterController : MonoBehaviour
     //Anims
     protected Animator anim;
 
+    [HideInInspector] public float lastFallingSpeed;
+    [HideInInspector] public Vector3 lastPosition;
+
     public Vector2 Position
     {
         get
@@ -87,6 +90,12 @@ public class PlatformerCharacterController : MonoBehaviour
 
         UpdateFacing();
         Move();
+    }
+
+    private void LateUpdate()
+    {
+        lastFallingSpeed = rigidbody.velocity.y;
+        lastPosition = transform.position;
     }
 
     /// <summary>

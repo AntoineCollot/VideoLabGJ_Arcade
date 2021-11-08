@@ -97,14 +97,24 @@ public class PlatformerEnemyAI : MonoBehaviour
         if(!collision.collider.CompareTag("Player"))
             return;
 
-        Vector3 toPlayer = collision.collider.transform.position - transform.position;
-        if(Vector3.Angle(toPlayer, Vector3.up)<45)
+        PlatformerCharacterController character = collision.collider.GetComponent<PlatformerCharacterController>();
+        Vector3 toPlayer = character.lastPosition - transform.position;
+
+
+        if(Mathf.Abs(Vector3.Angle(toPlayer, Vector3.up))<45)
         {
             Kill();
             collision.collider.GetComponent<PlatformerCharacterController>()?.ForceJump();
 
             AudioManager.PlaySound(SFX.PlatformerEnemyKill);
 
+        }
+        else if (character.lastFallingSpeed < -0.3f && Mathf.Abs(Vector3.Angle(toPlayer, Vector3.up)) < 70)
+        {
+            Kill();
+            collision.collider.GetComponent<PlatformerCharacterController>()?.ForceJump();
+
+            AudioManager.PlaySound(SFX.PlatformerEnemyKill);
         }
         else
         {

@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class ArcadeUITypewriterEffect : MonoBehaviour
 {
+    public float delay = 0;
     public float timerPerCharacter = 0.1f;
+    public bool playSounds = true;
 
     private void OnEnable()
     {
@@ -16,11 +18,14 @@ public class ArcadeUITypewriterEffect : MonoBehaviour
     {
         TextMeshProUGUI text = GetComponent<TextMeshProUGUI>();
         string textContent = text.text;
+        text.maxVisibleCharacters = 0;
+
+        yield return new WaitForSeconds(delay);
 
         for (int i = 0; i < textContent.Length; i++)
         {
             text.maxVisibleCharacters = i + 1;
-            if (textContent.Length > i && textContent[i] != ' ')
+            if (playSounds && textContent.Length > i && textContent[i] != ' ')
             {
                 AudioManager.PlaySound(SFX.TypeWritingEffect);
 

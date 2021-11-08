@@ -22,6 +22,7 @@ public class RacingFinish : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        RacingManager.Instance.MiniGameWin();
+        if(RacingManager.Instance.currentRaceTime>=0)
+            RacingManager.Instance.MiniGameWin();
     }
 }

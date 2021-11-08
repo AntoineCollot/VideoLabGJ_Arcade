@@ -23,6 +23,15 @@ TextureImporter:
   - first:
       213: -9020220773532632722
     second: Shooter_Enemy_Death2
+  - first:
+      213: 5246438530553754512
+    second: Shooter_Enemy_7
+  - first:
+      213: 1721287380031124535
+    second: Shooter_Enemy_8
+  - first:
+      213: 6653752445356737382
+    second: Shooter_Enemy_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -266,6 +275,69 @@ TextureImporter:
       bones: []
       spriteID: e69fcf56ffcb1d280800000000000000
       internalID: -9020220773532632722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooter_Enemy_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0933495fb081fc840800000000000000
+      internalID: 5246438530553754512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooter_Enemy_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7343e1b90cd33e710800000000000000
+      internalID: 1721287380031124535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shooter_Enemy_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66300e09890e65c50800000000000000
+      internalID: 6653752445356737382
       vertices: []
       indices: 
       edges: []

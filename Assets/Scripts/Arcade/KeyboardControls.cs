@@ -4,6 +4,7 @@ public class KeyboardControls : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
     CharacterController controller;
+    public float startDelay = 6;
 
     public float gravity;
 
@@ -14,6 +15,9 @@ public class KeyboardControls : MonoBehaviour
 
     void Update()
     {
+        if (Time.time < startDelay)
+            return;
+
         Vector3 inputMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         inputMovement *= _movementSpeed * Time.deltaTime;
 

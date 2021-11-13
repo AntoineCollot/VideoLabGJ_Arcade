@@ -15,6 +15,9 @@ public class VSEnemyAI : MonoBehaviour
     public int maxHp = 10;
     public int currentHp = 10;
 
+    public int[] attackSequenceCount;
+    int sequenceCount;
+
     Animator anim;
 
     // Start is called before the first frame update
@@ -99,7 +102,7 @@ public class VSEnemyAI : MonoBehaviour
 
         while (VSManager.Instance.gameIsPlaying)
         {
-            int attackCount = Random.Range(3, 10);
+            int attackCount = attackSequenceCount[Mathf.Min(sequenceCount, attackSequenceCount.Length - 1)];
 
             for (int i = 0; i < attackCount; i++)
             {
@@ -110,6 +113,7 @@ public class VSEnemyAI : MonoBehaviour
 
                 yield return new WaitForSeconds(attackInterval);
             }
+            sequenceCount++;
             yield return new WaitForSeconds(pauseTime);
         }
     }

@@ -70,7 +70,7 @@ public class ShooterPlayerFire : MonoBehaviour
         AudioManager.PlaySound(SFX.ShooterFire);
 
         RaycastHit hit;
-        if(Physics.Raycast(new Ray(transform.position, transform.forward),out hit, 100,obstacleLayers))
+        if(Physics.Raycast(new Ray(transform.position, transform.forward),out hit, 200,obstacleLayers))
         {
             StartCoroutine(FireDelayed(hit.point));
         }

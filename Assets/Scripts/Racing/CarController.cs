@@ -24,8 +24,9 @@ public class CarController : MonoBehaviour
     Vector3 originalPosition;
     Quaternion originalRotation;
 
-    public GameObject smokeRight;
-    public GameObject smokeLeft;
+    public ParticleSystem smokeRight;
+    public ParticleSystem smokeLeft;
+    float emissionAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class CarController : MonoBehaviour
         originalRotation = transform.rotation;
 
         RacingManager.Instance.onMiniGameOver.AddListener(OnMiniGameOver);
+        emissionAmount = smokeLeft.emission.rateOverTimeMultiplier;
     }
 
     private void Update()
@@ -43,10 +45,20 @@ public class CarController : MonoBehaviour
 
         inputs = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         isBreaking = Input.GetButton("Action");
-        smokeRight.SetActive(isBreaking);
-        smokeLeft.SetActive(isBreaking);
+        ParticleSystem.EmissionModule emissionRight = smokeRight.emission;
+        ParticleSystem.EmissionModule emissionLeft = smokeLeft.emission;
+        if(isBreaking)
+        {
+            emissionRight.rateOverTimeMultiplier = emissionAmount;
+            emissionLeft.rateOverTimeMultiplier = emissionAmount;
+        }
+        else
+        {
+            emissionRight.rateOverTimeMultiplier = 0;
+            emissionLeft.rateOverTimeMultiplier = 0;
+        }
 
-        if(isGrounded)
+        if (isGrounded)
         {
             float movementSign = Mathf.Sign(Vector3.Dot(carRigidbody.velocity, transform.forward));
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, inputs.x * turnStrength * Time.deltaTime * Mathf.Abs(inputs.y)* movementSign, 0));

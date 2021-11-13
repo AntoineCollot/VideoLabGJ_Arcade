@@ -26,6 +26,7 @@ public class ShooterEnemyAI : MonoBehaviour
     public Transform gunOrigin;
     public float projectileSpeed;
     bool isFiring = false;
+    bool isDead = false;
 
     private void Awake()
     {
@@ -101,6 +102,10 @@ public class ShooterEnemyAI : MonoBehaviour
                 isFiring = true;
                 anim.SetTrigger("Fire");
                 yield return new WaitForSeconds(fireDelay);
+
+                if (isDead)
+                    yield break;
+
                 ShooterProjectile projectile = Instantiate(projectilePrefab, gunOrigin.position, Quaternion.identity, null);
                 projectile.Fire(gameObject, (player.position - transform.position).normalized, projectileSpeed);
                 isFiring = false;
@@ -136,6 +141,7 @@ public class ShooterEnemyAI : MonoBehaviour
             anim.SetBool("IsDead", true);
             GetComponent<Collider>().enabled = false;
             agent.isStopped = true;
+            isDead = true;
             Destroy(gameObject, 1);
         }
         

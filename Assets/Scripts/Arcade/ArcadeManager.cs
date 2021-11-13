@@ -24,6 +24,7 @@ public class ArcadeManager : MonoBehaviour
     barrelsExploded = false;
     keyObtained = false;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 #endif
 
     }

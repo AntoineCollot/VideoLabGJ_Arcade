@@ -177,7 +177,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -206,7 +206,7 @@ MonoBehaviour:
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 55
-  fireInterval: 4
+  fireInterval: 2.5
   fireDelay: 0.75
   projectilePrefab: {fileID: 1657131316310979908, guid: be057f33273feb146a75301cbb70a271, type: 3}
   gunOrigin: {fileID: 8092758327674380841}
